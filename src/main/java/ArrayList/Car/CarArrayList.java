@@ -15,9 +15,7 @@ public class CarArrayList implements CarList {
 
     @Override
     public void addCar(Car car) {
-        if(size >= array.length) {
-            array = Arrays.copyOf(array, array.length * 2);
-        }
+        increaseArray();
         array[size] = car;
         size++;
     }
@@ -35,9 +33,11 @@ public class CarArrayList implements CarList {
     @Override
     public boolean removeAtIndex(int index) {
         indexOutOfRange(index);
-        for(int i = 0; i < size - 1; i++) {
-            array[i] = array[i + 1];
-        }
+        increaseArray();
+        System.arraycopy(array, index + 1, array, index, size - index - 1);
+//        for(int i = 0; i < size - 1; i++) {
+//            array[i] = array[i + 1];
+//        }
         size--;
         return true;
     }
@@ -53,9 +53,33 @@ public class CarArrayList implements CarList {
         size = 0;
     }
 
+    @Override
+    public void add(Car car, int index) {
+        increaseArray();
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        if(size - index >= 0) {
+            System.arraycopy(array, index, array, index + 1, size - index);
+        }
+//        for(int i = size; i > index; i--) {
+//            array[i] = array[i -1];
+//        }
+        array[index] = car;
+        size++;
+    }
+
+
+    private void increaseArray(){
+        if(size >= array.length) {
+            array = Arrays.copyOf(array, array.length * 2);
+        }
+    }
+
     private void indexOutOfRange(int index){
         if(index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
     }
+
 }

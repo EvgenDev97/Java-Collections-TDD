@@ -7,4 +7,5 @@ public interface CarList {
     boolean removeAtIndex(int index);
     int size();
     void clear();
+    void add(Car car, int index);
 }
