@@ -1,6 +1,7 @@
 import ArrayList.Car.Car;
 import ArrayList.Car.CarArrayList;
 import ArrayList.Car.CarList;
+import LinkedList.CarLinkedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ class CarListTest    {
 
     @BeforeEach
     void setUp() {
-        carList = new CarArrayList();
+        carList = new CarLinkedList();
         for(int i =0; i<100; i++){
             carList.addCar(new Car("Brand" + i, i));
         }
