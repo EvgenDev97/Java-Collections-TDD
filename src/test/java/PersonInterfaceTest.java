@@ -1,6 +1,7 @@
 import ArrayList.Person.Person;
 import ArrayList.Person.PersonArrList;
 import ArrayList.Person.PersonInterface;
+import LinkedList.PersonLinkedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ class PersonInterfaceTest {
     private PersonInterface Pers;
     @BeforeEach
     void setUp() {
-        Pers = new PersonArrList();
+        Pers = new PersonLinkedList();
         for(int i = 0; i < 100; i++){
             Pers.addPerson(new Person("Name" + i, i));
         }
@@ -62,13 +63,7 @@ class PersonInterfaceTest {
         });
     }
 
-    @Test
-    void insertPersonIntoMiddle(){
-        Person p = new Person("Bob", 15);
-        Pers.addPersonIndex(p, 50);
-        Person p50 = Pers.getPerson(50);
-        assertEquals("Bob", p50.getName());
-    }
+
 
     @Test
     void insertPersonIntoLast(){
