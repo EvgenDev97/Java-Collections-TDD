@@ -46,12 +46,29 @@ public class PersonArrList implements PersonInterface {
 
     @Override
     public void addPerson(Person p) {
-        if(size >= personArr.length) {
-            personArr = Arrays.copyOf(personArr, personArr.length * 2);
-        }
+        increaseArraySize();
         personArr[size] = p;
         size++;
     }
+
+    public  void addPersonIndex(Person p, int index) {
+        increaseArraySize();
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        System.arraycopy(personArr, index, personArr, index + 1, size - index);
+        personArr[index] = p;
+        size++;
+    }
+
+
+    public void increaseArraySize() {
+        if(size >= personArr.length) {
+            personArr = Arrays.copyOf(personArr, personArr.length * 2);
+        }
+    }
+
+
 
     private void checkOutOfRange(int index){
         if(index < 0 || index >= size){

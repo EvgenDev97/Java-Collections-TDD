@@ -7,4 +7,5 @@ public interface PersonInterface {
     boolean removeAtIndex(int index);
     int size();
     void clear();
+    void addPersonIndex(Person p, int index);
 }

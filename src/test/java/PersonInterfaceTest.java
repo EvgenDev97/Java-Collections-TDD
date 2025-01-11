@@ -61,4 +61,28 @@ class PersonInterfaceTest {
             Pers.getPerson(-1);
         });
     }
+
+    @Test
+    void insertPersonIntoMiddle(){
+        Person p = new Person("Bob", 15);
+        Pers.addPersonIndex(p, 50);
+        Person p50 = Pers.getPerson(50);
+        assertEquals("Bob", p50.getName());
+    }
+
+    @Test
+    void insertPersonIntoLast(){
+        Person p = new Person("Bob", 15);
+        Pers.addPersonIndex(p, 100);
+        Person p100 = Pers.getPerson(100);
+        assertEquals("Bob", p100.getName());
+    }
+
+    @Test
+    void insertPersonIntoFirst(){
+        Person p = new Person("Bob", 15);
+        Pers.addPersonIndex(p, 0);
+        Person p0 = Pers.getPerson(0);
+        assertEquals("Bob", p0.getName());
+    }
 }
