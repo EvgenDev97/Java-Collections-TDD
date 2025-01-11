@@ -1,5 +1,7 @@
 package ArrayList.Car;
 
+import java.util.Objects;
+
 public class Car {
     private String brand;
     private int number;
@@ -19,5 +21,34 @@ public class Car {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        if(obj instanceof Car) {
+//            Car car = (Car) obj;
+//            return car.brand.equals(this.brand) && car.number == number;
+//        }else{
+//            return false;
+//        }
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return brand.hashCode() + number;
+//    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return number == car.number && Objects.equals(brand, car.brand);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, number);
     }
 }
