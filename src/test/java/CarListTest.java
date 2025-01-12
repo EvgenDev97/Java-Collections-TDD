@@ -6,13 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-class CarListTest    {
+class   CarListTest    {
 
     private CarList carList;
 
     @BeforeEach
     void setUp() {
-        carList = new CarLinkedList();
+        carList = new CarArrayList();
         for(int i =0; i<100; i++){
             carList.addCar(new Car("Brand" + i, i));
         }
@@ -46,7 +46,7 @@ class CarListTest    {
 
     @Test
     public void removeByNonExistingCar(){
-        Car car = new Car("Brand1", 1);
+        Car car = new Car("BMW", 12);
         assertFalse(carList.removeCar(car));
         assertEquals(100, carList.size());
     }
@@ -86,5 +86,14 @@ class CarListTest    {
         carList.add(car, 0);
         Car carFromList = carList.getCar(0);
         assertEquals("BMW", carFromList.getBrand());
+    }
+
+    @Test
+    public void IfCarContainReturnTrueElseFalse(){
+        Car car = new Car("BMW", 1);
+        carList.add(car, 100);
+        assertTrue(carList.contains(car));
+        carList.removeCar(car);
+        assertFalse(carList.contains(car));
     }
 }
