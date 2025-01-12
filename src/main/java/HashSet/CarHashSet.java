@@ -85,6 +85,19 @@ public class CarHashSet implements CarSet {
         arrayCars = new Entry[INITIAL_CAPACITY];
     }
 
+    @Override
+    public boolean contains(Car car) {
+            int position = getElementPosition(car, arrayCars.length);
+        Entry currentElement = arrayCars[position];
+        while(currentElement != null){
+            if(currentElement.value.equals(car)) {
+                return true;
+            }
+            currentElement = currentElement.next;
+        }
+        return false;
+    }
+
 
     private void increaseArray(){
         Entry[] newArray = new Entry[arrayCars.length * 2];

@@ -14,10 +14,11 @@ public class CarArrayList implements CarList {
     }
 
     @Override
-    public void addCar(Car car) {
+    public boolean addCar(Car car) {
         increaseArray();
         array[size] = car;
         size++;
+        return true;
     }
 
     @Override
@@ -28,6 +29,17 @@ public class CarArrayList implements CarList {
            }
        }
        return false;
+    }
+
+
+    @Override
+    public boolean contains(Car car) {
+        for(int i = 0; i < size; i++) {
+            if(array[i].equals(car)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -52,6 +64,8 @@ public class CarArrayList implements CarList {
         array = new Car[10];
         size = 0;
     }
+
+
 
     @Override
     public void add(Car car, int index) {
