@@ -1,14 +1,8 @@
 package HashSet;
 
 import ArrayList.Car.Car;
+import CarCollection.CarCollections;
 
-public interface CarSet {
+public interface CarSet extends CarCollections {
 
-    boolean addCar(Car car);
-
-    boolean removeCar(Car car);
-
-    int size();
-
-    void clear();
 }
