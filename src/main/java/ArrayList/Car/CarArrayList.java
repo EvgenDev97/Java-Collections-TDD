@@ -1,6 +1,7 @@
 package ArrayList.Car;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class CarArrayList implements CarList {
 
@@ -96,4 +97,23 @@ public class CarArrayList implements CarList {
         }
     }
 
+    @Override
+    public Iterator<Car> iterator() {
+        return new Iterator<Car>() {
+
+            int index = 0;
+
+            @Override
+            //check elements in collection
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            //return next element
+            public Car next() {
+                return  array[index++];
+            }
+        };
+    }
 }

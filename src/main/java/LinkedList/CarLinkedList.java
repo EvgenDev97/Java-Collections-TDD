@@ -3,6 +3,8 @@ package LinkedList;
 import ArrayList.Car.Car;
 import ArrayList.Car.CarList;
 
+import java.util.Iterator;
+
 public class CarLinkedList implements CarList {
 
     private Node first;
@@ -120,6 +122,23 @@ public class CarLinkedList implements CarList {
         return node;
     }
 
+    @Override
+    public Iterator<Car> iterator() {
+        return new Iterator<Car>() {
+            private Node node = first;
+            @Override
+            public boolean hasNext() {
+                return node != null;
+            }
+
+            @Override
+            public Car next() {
+                Car car = node.value;
+                node = node.next;
+                return car ;
+            }
+        };
+    }
 
 
     private static class Node {

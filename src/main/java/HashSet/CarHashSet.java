@@ -2,6 +2,8 @@ package HashSet;
 
 import ArrayList.Car.Car;
 
+import java.util.Iterator;
+
 public class CarHashSet implements CarSet {
 
     private static final int INITIAL_CAPACITY = 16;
@@ -87,7 +89,7 @@ public class CarHashSet implements CarSet {
 
     @Override
     public boolean contains(Car car) {
-            int position = getElementPosition(car, arrayCars.length);
+                int position = getElementPosition(car, arrayCars.length);
         Entry currentElement = arrayCars[position];
         while(currentElement != null){
             if(currentElement.value.equals(car)) {
@@ -113,6 +115,38 @@ public class CarHashSet implements CarSet {
 
     private int getElementPosition(Car car, int arrayLength) {
         return Math.abs(car.hashCode() % arrayLength);
+    }
+
+    @Override
+    public Iterator<Car> iterator() {
+        return new Iterator<Car>() {
+            private int index = 0;
+            private  int arrIndex = 0;
+            Entry entry;
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public Car next() {
+                while (arrayCars[arrIndex] == null) {
+                    arrIndex++;
+                }
+                if(entry == null) {
+                    entry = arrayCars[arrIndex];
+                }
+                Car result = entry.value;
+                entry = entry.next;
+                if(entry == null) {
+                    arrIndex++;
+                }
+                index++;
+                return result;
+            }
+
+
+        };
     }
 
 

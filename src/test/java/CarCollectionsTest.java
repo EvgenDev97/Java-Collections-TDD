@@ -1,11 +1,12 @@
 import ArrayList.Car.Car;
+import ArrayList.Car.CarArrayList;
 import CarCollection.CarCollections;
 import HashSet.CarHashSet;
+import LinkedList.CarLinkedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CarCollectionsTest {
 
@@ -22,5 +23,17 @@ class CarCollectionsTest {
     public  void contains(){
         assertTrue(carCollections.contains(new Car("Brand10", 10)));
         assertFalse(carCollections.contains(new Car("Brand550", 20)));
+    }
+
+    @Test
+    public  void testForEach(){
+        int index = 0;
+//        while(carCollections.iterator().hasNext()){
+//            Car car = carCollections.iterator().next();
+//        }
+        for(Car car : carCollections){
+            index++;
+        }
+        assertEquals(100, index);
     }
 }

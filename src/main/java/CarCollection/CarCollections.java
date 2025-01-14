@@ -2,7 +2,7 @@ package CarCollection;
 
 import ArrayList.Car.Car;
 
-public interface CarCollections {
+public interface CarCollections extends Iterable<Car> {
 
     boolean addCar(Car car);
 
